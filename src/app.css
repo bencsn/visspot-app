@@ -7,5 +7,5 @@ body {
 }
 
 h1 {
-    @apply text-4xl font-black; 
+    @apply text-4xl font-black tracking-wide leading-loose; 
 }
