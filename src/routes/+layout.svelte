@@ -22,6 +22,6 @@
 		{/if}
 	</div>
 </nav>
-<div class="px-6 py-10 mx-auto max-w-6xl">
+<div class="px-6 py-16 mx-auto max-w-6xl">
 	<slot />
 </div>
