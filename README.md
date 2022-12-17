@@ -2,11 +2,18 @@
 
 ## Developing
 
+You need to have [pnpm](https://pnpm.io/) installed.
+
 ```bash
-npm run dev
+# install dependencies
+pnpm install
+```
+
+```bash
+pnpm run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm run dev -- --open
 ```
 
 ## Building
@@ -14,7 +21,7 @@ npm run dev -- --open
 To create a production version of your app:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 You can preview the production build with `npm run preview`.
