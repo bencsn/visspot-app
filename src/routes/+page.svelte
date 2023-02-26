@@ -1,9 +1,11 @@
 <script lang="ts">
+	import Button from '$lib/common/components/common-ui/Button.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="flex justify-end w-full mb-6">
+	<a href="/projects"><Button>Create a project</Button></a>
+</div>
 <div>{JSON.stringify(data)}</div>

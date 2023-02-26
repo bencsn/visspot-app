@@ -2,7 +2,7 @@
     export let secondary: boolean = false;
 
     const classes = {
-        primary: 'bg-green-200 text-green-800 rounded hover:bg-green-900 hover:text-white px-3 py-2',
+        primary: 'bg-visspot-light-primary rounded text-visspot-darkest-primary hover:bg-visspot-primary px-3 py-2',
         secondary: 'bg-gray-200 text-gray-800 rounded hover:bg-gray-900 hover:text-white px-3 py-2',
     };
 

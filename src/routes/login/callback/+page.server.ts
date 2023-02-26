@@ -1,9 +1,8 @@
 import type { PageServerLoad } from '../$types';
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 
 export const load: PageServerLoad = async (event) => {
-	console.log(event);
 	const url = new URL(event.request.url);
 	const code = url.searchParams.get('code');
 	const state = url.searchParams.get('state');
@@ -16,6 +15,28 @@ export const load: PageServerLoad = async (event) => {
 
 	const response = await fetch(`${env.API_URL}/login/callback?code=${code}&state=${state}`);
 	const data = await response.json();
+
+	if (response.status !== 200) {
+		// Clear cookies
+		event.cookies.set('accessToken', '', {
+			httpOnly: true,
+			secure: true,
+			sameSite: 'strict',
+			path: '/',
+			maxAge: 60 * 60 * 24 * 7 // 7 days
+		});
+
+		event.cookies.set('refreshToken', '', {
+			httpOnly: true,
+			secure: true,
+			sameSite: 'strict',
+			path: '/',
+			maxAge: 60 * 60 * 24 * 7 // 7 days
+		});
+		throw error(response.status, {
+			message: data.message
+		});
+	}
 
 	const accessToken = data.accessToken;
 	const refreshToken = data.refreshToken;
@@ -31,7 +52,7 @@ export const load: PageServerLoad = async (event) => {
 		httpOnly: true,
 		secure: true,
 		sameSite: 'strict',
-        path: "/",
+		path: '/',
 		maxAge: 60 * 60 * 24 * 7 // 7 days
 	});
 
@@ -39,10 +60,7 @@ export const load: PageServerLoad = async (event) => {
 		httpOnly: true,
 		secure: true,
 		sameSite: 'strict',
-        path: "/",
+		path: '/',
 		maxAge: 60 * 60 * 24 * 7 // 7 days
 	});
-
-	// Redirect to the home page
-	throw redirect(301, '/');
 };

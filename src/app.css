@@ -4,8 +4,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    @apply bg-gray-100 text-gray-900;
 }
 
 h1 {
-    @apply text-4xl font-black tracking-wide leading-loose; 
+    @apply text-2xl font-black tracking-wide leading-loose; 
 }
