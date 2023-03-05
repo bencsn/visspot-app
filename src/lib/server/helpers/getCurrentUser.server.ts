@@ -1,10 +1,11 @@
 import { env } from '$env/dynamic/private';
 import { error, type HttpError, type ServerLoadEvent } from '@sveltejs/kit';
+import { getAccessToken } from './getAccessToken.server';
 
 
 export async function getCurrentUser(event: ServerLoadEvent) {
     try {
-        const accessToken = event.cookies.get('accessToken');
+        const accessToken = getAccessToken(event);
         if (!env.API_URL) {
             throw error(500, { message: 'API_URL environment variable is not defined' });
         }
@@ -85,3 +86,4 @@ export async function getCurrentUser(event: ServerLoadEvent) {
         });
     }
 }
+

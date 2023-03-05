@@ -1,5 +1,6 @@
 <script lang='ts'>
     export let secondary: boolean = false;
+    export let onClick: () => void = () => {};
 
     const classes = {
         primary: 'bg-visspot-light-primary rounded text-visspot-darkest-primary hover:bg-visspot-primary px-3 py-2',
@@ -8,6 +9,6 @@
 
     $: className = secondary ? classes.secondary : classes.primary;
 </script>
-<button class={className}>
+<button on:click={onClick} class={className}>
 	<slot />
 </button>
